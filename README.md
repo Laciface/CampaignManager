@@ -10,11 +10,11 @@ képes kampányokat ki és bekapcsolni:
 
 A fenti entitásokra a következő szabályok vonatkoznak:
 
-• Egy blog poszt nem publikálódhat hétvégén
-• Egy termék publikálódhat bármelyik nap
-• Egy kupon csak a hónap első 3 és utolsó 3 napján aktiválódhat
-• Nem futhat két kampány egyidőben, ugyanazokra az elemekre
-• A kampányok futtatásának feltétele, hogy jóváhagyott státuszban legyenek
+- Egy blog poszt nem publikálódhat hétvégén
+- Egy termék publikálódhat bármelyik nap
+- Egy kupon csak a hónap első 3 és utolsó 3 napján aktiválódhat
+- Nem futhat két kampány egyidőben, ugyanazokra az elemekre
+- A kampányok futtatásának feltétele, hogy jóváhagyott státuszban legyenek
 
 
 A feladat megoldásához PHP 7+ használható. PHP package-k használata engedélyezett,
