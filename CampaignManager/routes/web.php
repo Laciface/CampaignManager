@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CampaignController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,5 @@ Route::get('/', function () {
 Route::get('/campaign', function () {
     return view('allCampaign');
 });
+
+Route::post('/createCampaign', [CampaignController::class, 'createCampaign']);
