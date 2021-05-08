@@ -14,12 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
-Route::get('/campaign', function () {
-    return view('allCampaign');
-});
+Route::get('/', [CampaignController::class, 'displayCampaigns'])->name('displayCampaigns');
+
+Route::get('/createCampaignPage', function () {
+    return view('createCampaign');
+})->name('campaignForm');
+
 
 Route::post('/createCampaign', [CampaignController::class, 'createCampaign']);

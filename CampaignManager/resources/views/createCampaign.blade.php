@@ -1,8 +1,15 @@
 @extends('layout.index')
 
 @section('center')
-    <form action="" method="post">
+    <form action="/createCampaign" method="post">
         {{ csrf_field() }}
+
+        <span>
+            <?php if(isset($_GET['msg']))
+                echo $_GET['msg'];
+            ?>
+        </span>
+
         <label for="name">kampány neve</label>
         <input type="text" name="name"required>
         <label for="firstDay">Kampány kezdési időpontja</label>
