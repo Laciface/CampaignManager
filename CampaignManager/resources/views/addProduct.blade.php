@@ -10,7 +10,7 @@
             <label for="name">Termék neve</label>
             <input type="text" name="name" required>
             <label for="description">Termék leírás</label>
-            <input type="text" name="description" required>
+            <textarea name="description" required></textarea>
             <button type="submit">Létrehoz</button>
         </form>
     </div>
