@@ -15,7 +15,14 @@ class CreateCampaignsTable extends Migration
     {
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('name');
+            $table->date('first_day');
+            $table->date('last_day');
+            $table->boolean('approved')->default('false');
+            $table->boolean('is_running')->default('false');
+            $table->json('products')->nullable();
+            $table->json('posts')->nullable();
+            $table->json('coupons')->nullable();
         });
     }
 
