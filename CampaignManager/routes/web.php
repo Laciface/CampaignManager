@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,9 +21,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [CampaignController::class, 'displayCampaigns'])->name('displayCampaigns');
 
+Route::get('/productForm', [ProductController::class, 'displayProductForm'])->name('productForm');
 Route::get('/createCampaignPage', function () {
     return view('createCampaign');
 })->name('campaignForm');
 
 
 Route::post('/createCampaign', [CampaignController::class, 'createCampaign']);
+Route::post('/createProduct', [ProductController::class, 'addProduct']);
