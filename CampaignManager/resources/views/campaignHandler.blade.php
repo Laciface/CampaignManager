@@ -2,24 +2,26 @@
 
 @section('center')
 
-    <div>{{ $campaign['name'] }}</div>
+    <div>{{ $name }}</div>
 
     <div>
         @foreach($products as $product)
-            <img src="{{ Storage::url('images/' . $product['image'])}}" alt="" width="100" height="100">
+            {{--<img src="{{ Storage::url('images/' . $product['image'])}}" alt="" width="100" height="100">--}}
             <p>{{ $product->name }}</p>
         @endforeach
     </div>
 
     <div>
         @foreach($posts as $post)
-            <a href="">{{$post->title}}</a>
+            <a href="/post/{{$post->id}}">{{$post->title}}</a>
         @endforeach
     </div>
 
     <div>
         @foreach($coupons as $coupon)
             <p>{{$coupon->name}}</p>
+            <p>{{$coupon->percentage}} %</p>
+            <button type="submit">Aktiválás</button>
         @endforeach
     </div>
 
