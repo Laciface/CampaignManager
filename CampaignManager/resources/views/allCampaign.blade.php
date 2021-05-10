@@ -2,6 +2,12 @@
 
 @section('center')
 
-<h2>tartalom</h2>
+<div>
+    @foreach($campaigns as $campaign)
+        <div>
+            {{$campaign->name}}
+        </div>
+    @endforeach
+</div>
 
 @endsection

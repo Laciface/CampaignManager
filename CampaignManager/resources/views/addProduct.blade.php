@@ -3,7 +3,7 @@
 @section('center')
 
     <div>
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="/createProduct" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             <label for="picture">Csatolj képet a termékhez</label>
             <input type="file" name="picture">

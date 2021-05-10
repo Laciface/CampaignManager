@@ -1,13 +1,22 @@
 @extends('layout.index')
 
 @section('center')
-    <form action="" method="post">
+    <form action="/createCampaign" method="post">
         {{ csrf_field() }}
+
+        <span>
+            <?php if(isset($_GET['msg']))
+                echo $_GET['msg'];
+            ?>
+        </span>
+
+        <label for="name">kampány neve</label>
+        <input type="text" name="name"required>
         <label for="firstDay">Kampány kezdési időpontja</label>
-        <input type="date" required>
+        <input type="date" name="first_day" required>
 
         <label for="lastDay">Kampány végének időpontja</label>
-        <input type="date" required>
+        <input type="date" name="last_day" required>
 
         <label for="status">Kampáy státusza</label>
         <select name="status" required>
