@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogPostController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\ProductController;
@@ -30,3 +31,7 @@ Route::post('/createCampaign', [CampaignController::class, 'createCampaign']);
 //create coupon
 Route::get('/couponForm', [CouponController::class, 'displayCouponForm'])->name('couponForm');
 Route::post('/createCoupon', [CouponController::class, 'createCoupon']);
+
+//create blog post
+Route::get('/blogPostForm', [BlogPostController::class, 'displayBlogPostForm'])->name('BlogPostForm');
+Route::post('/createBlogPost', [BlogPostController::class, 'createPost']);
