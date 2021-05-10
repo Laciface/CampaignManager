@@ -5,7 +5,8 @@
 <div>
     @foreach($campaigns as $campaign)
         <div>
-            {{$campaign->name}}
+            <p>{{$campaign->name}}</p>
+            <a href="/campaignHandler/{{$campaign->id}}">Megtekint</a>
         </div>
     @endforeach
 </div>
