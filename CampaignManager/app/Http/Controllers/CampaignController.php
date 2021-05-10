@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Campaign;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -39,5 +40,12 @@ class CampaignController extends Controller
         return redirect()->route('displayCampaigns');
     }
 
+    public function openHandler($id){
+        $campaign = Campaign::find($id);
+        $products = Campaign::where('id', $id)->value('products');
+        $posts = Campaign::where('id', $id)->value('posts');
+        $coupons = Campaign::where('id', $id)->value('coupons');
 
+        return view('campaignHandler', compact('campaign','products', 'posts', 'coupons'));
+    }
 }

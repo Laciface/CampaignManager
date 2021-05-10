@@ -6,4 +6,13 @@
 </head>
 
 <body>
-    <h1>Kampánymenedzser</h1>
+    <div>
+        <a href="/"><h1>Kampánymenedzser</h1></a>
+    </div>
+
+    <div>
+        <a href="/productForm">Termékek</a>
+        <a href="/blogPostForm">Blog posztok</a>
+        <a href="/couponForm">Kuponok</a>
+        <a href="/campaignForm">Kampányok</a>
+    </div>
