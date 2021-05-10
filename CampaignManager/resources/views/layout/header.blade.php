@@ -7,7 +7,7 @@
 
 <body>
     <div>
-        <h1>Kampánymenedzser</h1>
+        <a href="/"><h1>Kampánymenedzser</h1></a>
     </div>
 
     <div>
