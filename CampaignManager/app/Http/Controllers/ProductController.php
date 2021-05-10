@@ -13,7 +13,7 @@ class ProductController extends Controller
         return view('addProduct');
     }
 
-    public function addProduct(Request $request){
+    public function createProduct(Request $request){
         $name = $request->input('name');
         $description = $request->input('description');
 

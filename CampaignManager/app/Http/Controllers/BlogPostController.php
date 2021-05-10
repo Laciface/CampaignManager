@@ -19,5 +19,7 @@ class BlogPostController extends Controller
 
         $arrayToInsert = array('title'=> $title, 'post' => $post, 'added_at' => $time);
         DB::table('blog_posts')->insert($arrayToInsert);
+
+        return redirect()->route('displayCampaigns');
     }
 }

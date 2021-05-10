@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,17 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
-
+//main page
 Route::get('/', [CampaignController::class, 'displayCampaigns'])->name('displayCampaigns');
 
+//create product
 Route::get('/productForm', [ProductController::class, 'displayProductForm'])->name('productForm');
-Route::get('/createCampaignPage', function () {
-    return view('createCampaign');
-})->name('campaignForm');
+Route::post('/createProduct', [ProductController::class, 'createProduct']);
 
-
+//create campaign
+Route::get('/campaignForm', [CampaignController::class, 'displayCampaignsForm'])->name('campaignForm');
 Route::post('/createCampaign', [CampaignController::class, 'createCampaign']);
-Route::post('/createProduct', [ProductController::class, 'addProduct']);
+
+//create coupon
+Route::get('/couponForm', [CouponController::class, 'displayCouponForm'])->name('couponForm');
+Route::post('/createCoupon', [CouponController::class, 'createCoupon']);

@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class CampaignController extends Controller
 {
+    public function displayCampaignsForm(){
+        return view('createCampaign');
+    }
+
     public function displayCampaigns(){
         $campaigns = Campaign::all();
         return view('allCampaign', compact('campaigns'));
@@ -19,11 +23,11 @@ class CampaignController extends Controller
         $last_day = $request->input('last_day');
         if( strtotime($first_day) > strtotime($last_day)) {
             $msg = "Az utolsó nap előbb van mint a kezdő dátum";
-            header("Location: http://localhost:8000/createCampaignPage?msg=$msg");
+            header("Location: http://localhost:8000/campaignForm?msg=$msg");
             die();
         } elseif (strtotime($first_day) < strtotime('now')){
             $msg = "A kezdő dátum a mai napnál nem lehet korábbi";
-            header("Location: http://localhost:8000/createCampaignPage?msg=$msg", true);
+            header("Location: http://localhost:8000/campaignForm?msg=$msg", true);
             die();
         }
 
