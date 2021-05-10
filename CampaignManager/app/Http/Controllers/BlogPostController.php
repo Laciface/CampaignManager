@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class BlogPostController extends Controller
 {
     public function displayBlogPostForm(){
-        return view('addBlogPost');
+        return view('createBlogPost');
     }
 
     public function createPost(Request $request){

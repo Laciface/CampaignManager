@@ -10,7 +10,7 @@ use Intervention\Image\Facades\Image;
 class ProductController extends Controller
 {
     public function displayProductForm(){
-        return view('addProduct');
+        return view('createProduct');
     }
 
     public function createProduct(Request $request){
