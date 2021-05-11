@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->string('picture');
             $table->integer('price');
-            $table->integer('sale');
+            $table->integer('sale')->default(0);
         });
     }
 
