@@ -45,7 +45,13 @@ class CouponController extends Controller
         $discount = $request->input('coupon');
         $multiplier = (float) 1 - $discount;
         $productList = Campaign::where('id', $id)->value('products');
-        $this->setSalePrice($productList, $multiplier, $id);
+        if($this->canActivateToday()){
+            $this->setSalePrice($productList, $multiplier, $id);
+        } else {
+            $msg = 'Kupont a hónap első és utolsó 3 napjában lehet aktiválni!';
+            header("Location: http://localhost:8000/campaignHandler/$id?msg=$msg");
+            die();
+        }
     }
 
     public function setSalePrice($productIds, $multiplier, $campaignId){
@@ -56,5 +62,13 @@ class CouponController extends Controller
             }
         header("Location: http://localhost:8000/campaignHandler/$campaignId", true);
         die();
+    }
+
+    public function canActivateToday(){
+        $acceptableDays = array(1, 2, 3);
+        $lastDay = date('t',strtotime('today'));
+        $acceptableDays = array_merge($acceptableDays, array($lastDay - 2, $lastDay - 1, $lastDay));
+        $today = date('d');
+        return in_array($today, $acceptableDays);
     }
 }
