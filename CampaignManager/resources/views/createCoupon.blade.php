@@ -3,7 +3,7 @@
 @section('center')
 
     <div>
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="/createCoupon" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             <label for="name">Kupon neve</label>
             <input type="text" name="name" required>

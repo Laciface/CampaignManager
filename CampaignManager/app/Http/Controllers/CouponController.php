@@ -18,5 +18,7 @@ class CouponController extends Controller
 
         $arrayToInsert = array('name'=> $name, 'discount' => $discount, 'percentage' => $percentage);
         DB::table('coupons')->insert($arrayToInsert);
+
+        return redirect()->route('displayCampaigns');
     }
 }
