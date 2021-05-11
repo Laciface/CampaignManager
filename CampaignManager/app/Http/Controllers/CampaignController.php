@@ -60,4 +60,16 @@ class CampaignController extends Controller
         header("Location: http://localhost:8000/campaignHandler/$id", true);
         die();
     }
+
+    public function startCampaign($id){
+        DB::table('campaigns')->where('id', $id)->update(['is_running' => true]);
+        header("Location: http://localhost:8000/campaignHandler/$id", true);
+        die();
+    }
+
+    public function stopCampaign($id){
+        DB::table('campaigns')->where('id', $id)->update(['is_running' => false]);
+        header("Location: http://localhost:8000/campaignHandler/$id", true);
+        die();
+    }
 }
