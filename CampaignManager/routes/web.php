@@ -34,6 +34,7 @@ Route::post('/addProduct/{id}', [ProductController::class, 'addProductToCampaign
 //create coupon
 Route::get('/couponForm', [CouponController::class, 'displayCouponForm'])->name('couponForm');
 Route::post('/createCoupon', [CouponController::class, 'createCoupon']);
+Route::post('/addCoupon/{id}', [CouponController::class, 'addCouponToCampaign']);
 
 //create blog post
 Route::get('/blogPostForm', [BlogPostController::class, 'displayBlogPostForm'])->name('blogPostForm');
