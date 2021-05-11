@@ -31,17 +31,26 @@
             <button type="submit">Hozzáad</button>
         </form>
     </div>
-    <div>
-        <a href=""></a>
-    </div>
 
     <span>kampány blogbejegyzései</span>
     <div>
         @if($posts)
-            @foreach($posts as $post)
-                <a href="/post/{{$post->id}}">{{$post->title}}</a>
+            @foreach($posts as $postList)
+                @foreach($postList as $post)
+                    <p>{{ $post['name'] }}</p>
+                @endforeach
             @endforeach
         @endif
+
+        <form action="/addPost/{{$campaign->id}}" method="post">
+            {{ csrf_field() }}
+            <select name="postId">
+                @foreach($availablePosts as $newPost)
+                    <option value="{{$newPost['id']}}">{{$newPost['name']}}</option>
+                @endforeach
+            </select>
+            <button type="submit">Hozzáad</button>
+        </form>
     </div>
 
     <span>kampány kuponjai</span>
