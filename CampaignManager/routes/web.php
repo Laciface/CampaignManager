@@ -25,9 +25,10 @@ Route::get('/campaignForm', [CampaignController::class, 'displayCampaignsForm'])
 Route::post('/createCampaign', [CampaignController::class, 'createCampaign']);
 Route::get('/campaignHandler/{id}', [CampaignController::class, 'openHandler']);
 
-//create product
+//Product
 Route::get('/productForm', [ProductController::class, 'displayProductForm'])->name('productForm');
 Route::post('/createProduct', [ProductController::class, 'createProduct']);
+Route::post('/addProduct/{id}', [ProductController::class, 'addProductToCampaign']);
 
 
 //create coupon
