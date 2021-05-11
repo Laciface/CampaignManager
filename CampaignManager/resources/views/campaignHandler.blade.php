@@ -14,9 +14,14 @@
     <div>
         @if($products)
             @foreach($products as $productList)
-                {{--<img src="{{ Storage::url('images/' . $product['image'])}}" alt="" width="100" height="100">--}}
                 @foreach($productList as $product)
+                    <img src="{{ Storage::url('images/' . $product['picture'])}}" alt="" width="100" height="100">
                     <p>{{ $product['name'] }}</p>
+                    @if($product['sale'] !== 0)
+                        <p>{{ $product['sale'] }} Ft</p>
+                    @else
+                        <p>{{ $product['price'] }} Ft</p>
+                    @endif
                 @endforeach
             @endforeach
         @endif
