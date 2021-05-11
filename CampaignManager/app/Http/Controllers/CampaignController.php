@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BlogPost;
 use App\Models\Campaign;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -42,18 +43,12 @@ class CampaignController extends Controller
 
     public function openHandler($id){
         $campaign = Campaign::find($id);
-        $productIdList = Campaign::where('id', $id)->value('products');
-        $products = array();
-        if($productIdList != null) {
-            foreach ($productIdList as $productId) {
-                $product = Product::where('id', $productId)->get();
-                array_push($products, $product);
-            }
-        }
-        $posts = Campaign::where('id', $id)->value('posts');
+        $products = $this->retrieveElements($id,'products');
+        $posts = $this->retrieveElements($id,'posts');
         $coupons = Campaign::where('id', $id)->value('coupons');
         $availableProducts = Product::all();
+        $availablePosts = BlogPost::all();
 
-        return view('campaignHandler', compact('productIdList','availableProducts','campaign','products', 'posts', 'coupons'));
+        return view('campaignHandler', compact('availablePosts','availableProducts','campaign','products', 'posts', 'coupons'));
     }
 }
