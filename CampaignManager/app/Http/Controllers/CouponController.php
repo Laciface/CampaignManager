@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Campaign;
 use App\Models\Coupon;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -37,6 +38,23 @@ class CouponController extends Controller
         }
 
         header("Location: http://localhost:8000/campaignHandler/$id", true);
+        die();
+    }
+
+    public function activateCoupon(Request $request, $id){
+        $discount = $request->input('coupon');
+        $multiplier = (float) 1 - $discount;
+        $productList = Campaign::where('id', $id)->value('products');
+        $this->setSalePrice($productList, $multiplier, $id);
+    }
+
+    public function setSalePrice($productIds, $multiplier, $campaignId){
+            foreach($productIds as $id){
+                $price = Product::where('id', $id)->value('price');
+                $sale = $multiplier * $price;
+                Product::where('id', $id)->update(['sale' => $sale]);
+            }
+        header("Location: http://localhost:8000/campaignHandler/$campaignId", true);
         die();
     }
 }
