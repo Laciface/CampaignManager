@@ -42,10 +42,18 @@ class CampaignController extends Controller
 
     public function openHandler($id){
         $campaign = Campaign::find($id);
-        $products = Campaign::where('id', $id)->value('products');
+        $productIdList = Campaign::where('id', $id)->value('products');
+        $products = array();
+        if($productIdList != null) {
+            foreach ($productIdList as $productId) {
+                $product = Product::where('id', $productId)->get();
+                array_push($products, $product);
+            }
+        }
         $posts = Campaign::where('id', $id)->value('posts');
         $coupons = Campaign::where('id', $id)->value('coupons');
+        $availableProducts = Product::all();
 
-        return view('campaignHandler', compact('campaign','products', 'posts', 'coupons'));
+        return view('campaignHandler', compact('productIdList','availableProducts','campaign','products', 'posts', 'coupons'));
     }
 }
