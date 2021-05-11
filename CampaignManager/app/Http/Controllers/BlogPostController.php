@@ -39,4 +39,8 @@ class BlogPostController extends Controller
         header("Location: http://localhost:8000/campaignHandler/$id", true);
         die();
     }
+
+    public function isWeekend($date) {
+        return (date('N', strtotime($date)) >= 6);
+    }
 }
