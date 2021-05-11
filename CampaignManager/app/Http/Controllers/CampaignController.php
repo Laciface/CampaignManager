@@ -53,4 +53,11 @@ class CampaignController extends Controller
 
         return view('campaignHandler', compact('availableCoupons','availablePosts','availableProducts','campaign','products', 'posts', 'coupons'));
     }
+
+    public function changeStatus(Request $request, $id){
+        $status = $request->input('status');
+        DB::table('campaigns')->where('id', $id)->update(['status', $status]);
+        header("Location: http://localhost:8000/campaignHandler/$id", true);
+        die();
+    }
 }
