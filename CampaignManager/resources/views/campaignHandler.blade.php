@@ -56,12 +56,34 @@
     <span>kampány kuponjai</span>
     <div>
         @if($coupons)
+            @foreach($coupons as $couponList)
+                @foreach($couponList as $coupon)
+                    <form action="" method="post">
+                        {{csrf_field()}}
+                        <p>{{ $coupon['name'] }}</p>
+                        <p>{{$coupon->percentage}} %</p>
+                        <button type="submit">Aktiválás</button>
+                    </form>
+                @endforeach
+            @endforeach
+        @endif
+
+        <form action="/addCoupon/{{$campaign->id}}" method="post">
+            {{ csrf_field() }}
+            <select name="couponId">
+                @foreach($availableCoupons as $newCoupon)
+                    <option value="{{$newCoupon['id']}}">{{$newCoupon['name']}} ({{$newCoupon['percentage']}}%)</option>
+                @endforeach
+            </select>
+            <button type="submit">Hozzáad</button>
+        </form>
+        {{--@if($coupons)
             @foreach($coupons as $coupon)
                 <p>{{$coupon->name}}</p>
                 <p>{{$coupon->percentage}} %</p>
                 <button type="submit">Aktiválás</button>
             @endforeach
-        @endif
+        @endif--}}
     </div>
 
     <span>kampány státusza</span>
