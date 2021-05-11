@@ -44,8 +44,6 @@ class ProductController extends Controller
             DB::table('campaigns')->where('id', $id)->update(['products'=> $productIdList]);
         }
 
-        /*DB::table('campaigns')->where('id', $id)->update(['products'=> array($productId)]);*/
-
         header("Location: http://localhost:8000/campaignHandler/$id", true);
         die();
     }
