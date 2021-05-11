@@ -38,3 +38,4 @@ Route::post('/createCoupon', [CouponController::class, 'createCoupon']);
 //create blog post
 Route::get('/blogPostForm', [BlogPostController::class, 'displayBlogPostForm'])->name('blogPostForm');
 Route::post('/createBlogPost', [BlogPostController::class, 'createPost']);
+Route::post('/addPost/{id}', [blogpostController::class, 'addPostToCampaign']);
