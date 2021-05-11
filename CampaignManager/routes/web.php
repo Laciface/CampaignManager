@@ -41,3 +41,8 @@ Route::post('/addCoupon/{id}', [CouponController::class, 'addCouponToCampaign'])
 Route::get('/blogPostForm', [BlogPostController::class, 'displayBlogPostForm'])->name('blogPostForm');
 Route::post('/createBlogPost', [BlogPostController::class, 'createPost']);
 Route::post('/addPost/{id}', [blogpostController::class, 'addPostToCampaign']);
+
+
+//start and stop
+Route::post('/activate/{id}', [CampaignController::class, 'activateCampaign']);
+Route::post('/stop/{id}', [CampaignController::class, 'stopCampaign']);

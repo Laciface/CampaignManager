@@ -56,7 +56,7 @@ class CampaignController extends Controller
 
     public function changeStatus(Request $request, $id){
         $status = $request->input('status');
-        DB::table('campaigns')->where('id', $id)->update(['status', $status]);
+        DB::table('campaigns')->where('id', $id)->update(['approved' => $status]);
         header("Location: http://localhost:8000/campaignHandler/$id", true);
         die();
     }

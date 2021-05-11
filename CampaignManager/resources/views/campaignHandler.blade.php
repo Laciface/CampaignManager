@@ -80,21 +80,21 @@
     </div>
 
     <span>kampány státusza</span>
-    @if($campaign->status)
+    @if($campaign->approved)
         <p>jóváhagyott</p>
     @else
         <p>jóváhagyásra vár</p>
     @endif
-
-    <form action="/changeStatus/{{$campaign->id}}">
-        <div>
+    <div>
+        <form action="/changeStatus/{{$campaign->id}}" method="post">
+            {{csrf_field()}}
             <select name="status">
-                <option value="approved">elfogadott</option>
-                <option value="not accepted">nem elfogadott</option>
+                <option value="1">elfogadott</option>
+                <option value="0">nem elfogadott</option>
             </select>
             <button type="submit">módosít</button>
-        </div>
-    </form>
+        </form>
+    </div>
 
     <form action="">
         <button type="submit">Start</button>
