@@ -62,9 +62,25 @@ class CampaignController extends Controller
     }
 
     public function startCampaign($id){
-        DB::table('campaigns')->where('id', $id)->update(['is_running' => true]);
-        header("Location: http://localhost:8000/campaignHandler/$id", true);
-        die();
+        $productIds = Campaign::where('id', $id)->value('products');
+        $activable = Campaign::where('id', $id)->value('approved');
+        if($activable){
+            $unique = $this->checkProductsOfRunningCampaigns($productIds);
+            if($unique){
+                DB::table('campaigns')->where('id', $id)->update(['is_running' => true]);
+                header("Location: http://localhost:8000/campaignHandler/$id", true);
+                die();
+            } else {
+                $msg = 'Már fut egy kampány ezzel a termékkel';
+                header("Location: http://localhost:8000/campaignHandler/$id?msg=$msg");
+                die();
+            }
+
+        } else {
+            $msg = 'Jóváhagyott státusz szükséges indítás előtt!';
+            header("Location: http://localhost:8000/campaignHandler/$id?msg=$msg");
+            die();
+        }
     }
 
     public function stopCampaign($id){
