@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BlogPost;
+use App\Models\Campaign;
+use App\Models\Coupon;
+use App\Models\Product;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -17,5 +21,29 @@ class Controller extends BaseController
             header("Location: http://localhost:8000/campaignHandler/$id?msg=$msg");
             die();
         }
+    }
+
+    public function retrieveElements($id, $column){
+        $idList = Campaign::where('id', $id)->value($column);
+        $elements = array();
+        if($idList != null) {
+            foreach ($idList as $elementId) {
+                switch ($column) {
+                    case "products":
+                        $element = Product::where('id', $elementId)->get();
+                        array_push($elements, $element);
+                        break;
+                    case "posts":
+                        $element = BlogPost::where('id', $elementId)->get();
+                        array_push($elements, $element);
+                        break;
+                    case "coupons":
+                        $element = Coupon::where('id', $elementId)->get();
+                        array_push($elements, $element);
+                        break;
+                }
+            }
+        }
+        return $elements;
     }
 }
