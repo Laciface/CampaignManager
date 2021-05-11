@@ -44,5 +44,5 @@ Route::post('/addPost/{id}', [blogpostController::class, 'addPostToCampaign']);
 
 
 //start and stop campaign
-Route::post('/activate/{id}', [CampaignController::class, 'activateCampaign']);
+Route::post('/activate/{id}', [CampaignController::class, 'startCampaign']);
 Route::post('/stop/{id}', [CampaignController::class, 'stopCampaign']);
