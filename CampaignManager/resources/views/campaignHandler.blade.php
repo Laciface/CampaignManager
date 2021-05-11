@@ -7,11 +7,23 @@
     <span>kampány termékei</span>
     <div>
         @if($products)
-            @foreach($products as $product)
+            @foreach($products as $productList)
                 {{--<img src="{{ Storage::url('images/' . $product['image'])}}" alt="" width="100" height="100">--}}
-                <p>{{ $product->name }}</p>
+                @foreach($productList as $product)
+                    <p>{{ $product['name'] }}</p>
+                @endforeach
             @endforeach
         @endif
+
+        <form action="/addProduct/{{$campaign->id}}" method="post">
+            {{ csrf_field() }}
+            <select name="productId">
+                @foreach($availableProducts as $newProduct)
+                    <option value="{{$newProduct['id']}}">{{$newProduct['name']}}</option>
+                @endforeach
+            </select>
+            <button type="submit">Hozzáad</button>
+        </form>
     </div>
     <div>
         <a href=""></a>
