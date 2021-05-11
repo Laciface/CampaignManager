@@ -58,10 +58,11 @@
         @if($coupons)
             @foreach($coupons as $couponList)
                 @foreach($couponList as $coupon)
-                    <form action="" method="post">
+                    <form action="/activateCoupon/{{$campaign->id}}" method="post">
                         {{csrf_field()}}
                         <p>{{ $coupon['name'] }}</p>
                         <p>{{$coupon->percentage}} %</p>
+                        <input type="hidden" name="coupon" value="{{$coupon->discount}}">
                         <button type="submit">Aktiválás</button>
                     </form>
                 @endforeach
