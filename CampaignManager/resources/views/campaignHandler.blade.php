@@ -4,6 +4,12 @@
 
     <h2>{{ $campaign->name }}</h2>
 
+    <span>
+        <?php
+            if(isset($_GET['msg']))
+            echo $_GET['msg'];
+        ?>
+    </span>
     <span>kampány termékei</span>
     <div>
         @if($products)

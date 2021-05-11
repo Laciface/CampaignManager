@@ -37,6 +37,11 @@ class ProductController extends Controller
     public function addProductToCampaign(Request $request, $id){
         $productId = $request->input('productId');
         $productIdList = Campaign::where('id', $id)->value('products');
+        if(in_array($productId, $productIdList)){
+            $msg = "ez a termék már hozzá lett adva a kampányhoz";
+            header("Location: http://localhost:8000/campaignHandler/$id?msg=$msg");
+            die();
+        }
         if($productIdList == null){
             DB::table('campaigns')->where('id', $id)->update(['products'=> array($productId)]);
         } else {
