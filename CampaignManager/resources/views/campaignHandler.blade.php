@@ -77,13 +77,6 @@
             </select>
             <button type="submit">Hozzáad</button>
         </form>
-        {{--@if($coupons)
-            @foreach($coupons as $coupon)
-                <p>{{$coupon->name}}</p>
-                <p>{{$coupon->percentage}} %</p>
-                <button type="submit">Aktiválás</button>
-            @endforeach
-        @endif--}}
     </div>
 
     <span>kampány státusza</span>
@@ -93,7 +86,7 @@
         <p>jóváhagyásra vár</p>
     @endif
 
-    <form action="">
+    <form action="/changeStatus/{{$campaign->id}}">
         <div>
             <select name="status">
                 <option value="approved">elfogadott</option>
