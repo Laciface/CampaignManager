@@ -96,11 +96,13 @@
         </form>
     </div>
 
-    <form action="">
+    <form action="/activate/{{$campaign->id}}" method="post">
+        {{csrf_field()}}
         <button type="submit">Start</button>
     </form>
 
-    <form action="">
+    <form action="/stop/{{$campaign->id}}" method="post">
+        {{csrf_field()}}
         <button type="submit">Stop</button>
     </form>
 @endsection

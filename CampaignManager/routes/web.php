@@ -43,6 +43,6 @@ Route::post('/createBlogPost', [BlogPostController::class, 'createPost']);
 Route::post('/addPost/{id}', [blogpostController::class, 'addPostToCampaign']);
 
 
-//start and stop
+//start and stop campaign
 Route::post('/activate/{id}', [CampaignController::class, 'activateCampaign']);
 Route::post('/stop/{id}', [CampaignController::class, 'stopCampaign']);
