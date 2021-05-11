@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BlogPost;
 use App\Models\Campaign;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 
 class BlogPostController extends Controller
