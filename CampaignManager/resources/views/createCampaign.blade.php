@@ -5,7 +5,8 @@
         {{ csrf_field() }}
 
         <span>
-            <?php if(isset($_GET['msg']))
+            <?php
+                if(isset($_GET['msg']))
                 echo $_GET['msg'];
             ?>
         </span>

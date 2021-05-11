@@ -4,37 +4,86 @@
 
     <h2>{{ $campaign->name }}</h2>
 
+    <span>
+        <?php
+            if(isset($_GET['msg']))
+            echo $_GET['msg'];
+        ?>
+    </span>
     <span>kampány termékei</span>
     <div>
         @if($products)
-            @foreach($products as $product)
+            @foreach($products as $productList)
                 {{--<img src="{{ Storage::url('images/' . $product['image'])}}" alt="" width="100" height="100">--}}
-                <p>{{ $product->name }}</p>
+                @foreach($productList as $product)
+                    <p>{{ $product['name'] }}</p>
+                @endforeach
             @endforeach
         @endif
-    </div>
-    <div>
-        <a href=""></a>
+
+        <form action="/addProduct/{{$campaign->id}}" method="post">
+            {{ csrf_field() }}
+            <select name="productId">
+                @foreach($availableProducts as $newProduct)
+                    <option value="{{$newProduct['id']}}">{{$newProduct['name']}}</option>
+                @endforeach
+            </select>
+            <button type="submit">Hozzáad</button>
+        </form>
     </div>
 
     <span>kampány blogbejegyzései</span>
     <div>
         @if($posts)
-            @foreach($posts as $post)
-                <a href="/post/{{$post->id}}">{{$post->title}}</a>
+            @foreach($posts as $postList)
+                @foreach($postList as $post)
+                    <p>{{ $post['title'] }}</p>
+                @endforeach
             @endforeach
         @endif
+
+        <form action="/addPost/{{$campaign->id}}" method="post">
+            {{ csrf_field() }}
+            <select name="postId">
+                @foreach($availablePosts as $newPost)
+                    <option value="{{$newPost['id']}}">{{$newPost['title']}}</option>
+                @endforeach
+            </select>
+            <button type="submit">Hozzáad</button>
+        </form>
     </div>
 
     <span>kampány kuponjai</span>
     <div>
         @if($coupons)
+            @foreach($coupons as $couponList)
+                @foreach($couponList as $coupon)
+                    <form action="" method="post">
+                        {{csrf_field()}}
+                        <p>{{ $coupon['name'] }}</p>
+                        <p>{{$coupon->percentage}} %</p>
+                        <button type="submit">Aktiválás</button>
+                    </form>
+                @endforeach
+            @endforeach
+        @endif
+
+        <form action="/addCoupon/{{$campaign->id}}" method="post">
+            {{ csrf_field() }}
+            <select name="couponId">
+                @foreach($availableCoupons as $newCoupon)
+                    <option value="{{$newCoupon['id']}}">{{$newCoupon['name']}} ({{$newCoupon['percentage']}}%)</option>
+                @endforeach
+            </select>
+            <button type="submit">Hozzáad</button>
+        </form>
+        {{--@if($coupons)
             @foreach($coupons as $coupon)
                 <p>{{$coupon->name}}</p>
                 <p>{{$coupon->percentage}} %</p>
                 <button type="submit">Aktiválás</button>
             @endforeach
-        @endif
+        @endif--}}
     </div>
 
     <span>kampány státusza</span>

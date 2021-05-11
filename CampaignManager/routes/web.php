@@ -25,15 +25,18 @@ Route::get('/campaignForm', [CampaignController::class, 'displayCampaignsForm'])
 Route::post('/createCampaign', [CampaignController::class, 'createCampaign']);
 Route::get('/campaignHandler/{id}', [CampaignController::class, 'openHandler']);
 
-//create product
+//Product
 Route::get('/productForm', [ProductController::class, 'displayProductForm'])->name('productForm');
 Route::post('/createProduct', [ProductController::class, 'createProduct']);
+Route::post('/addProduct/{id}', [ProductController::class, 'addProductToCampaign']);
 
 
 //create coupon
 Route::get('/couponForm', [CouponController::class, 'displayCouponForm'])->name('couponForm');
 Route::post('/createCoupon', [CouponController::class, 'createCoupon']);
+Route::post('/addCoupon/{id}', [CouponController::class, 'addCouponToCampaign']);
 
 //create blog post
 Route::get('/blogPostForm', [BlogPostController::class, 'displayBlogPostForm'])->name('blogPostForm');
 Route::post('/createBlogPost', [BlogPostController::class, 'createPost']);
+Route::post('/addPost/{id}', [blogpostController::class, 'addPostToCampaign']);

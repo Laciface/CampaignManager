@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BlogPost;
 use App\Models\Campaign;
+use App\Models\Coupon;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -42,10 +44,13 @@ class CampaignController extends Controller
 
     public function openHandler($id){
         $campaign = Campaign::find($id);
-        $products = Campaign::where('id', $id)->value('products');
-        $posts = Campaign::where('id', $id)->value('posts');
-        $coupons = Campaign::where('id', $id)->value('coupons');
+        $products = $this->retrieveElements($id,'products');
+        $posts = $this->retrieveElements($id,'posts');
+        $coupons = $this->retrieveElements($id,'coupons');
+        $availableProducts = Product::all();
+        $availablePosts = BlogPost::all();
+        $availableCoupons = Coupon::all();
 
-        return view('campaignHandler', compact('campaign','products', 'posts', 'coupons'));
+        return view('campaignHandler', compact('availableCoupons','availablePosts','availableProducts','campaign','products', 'posts', 'coupons'));
     }
 }

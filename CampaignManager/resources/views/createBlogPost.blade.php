@@ -3,10 +3,10 @@
 @section('center')
 
     <div>
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="/createBlogPost" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             <label for="title">Cím</label>
-            <input type="text" name="name" required>
+            <input type="text" name="title" required>
             <label for="post">Bejegyzés</label>
             <textarea name="post" required></textarea>
             <button type="submit">Létrehoz</button>
