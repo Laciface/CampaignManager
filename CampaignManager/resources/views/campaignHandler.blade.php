@@ -37,7 +37,7 @@
         @if($posts)
             @foreach($posts as $postList)
                 @foreach($postList as $post)
-                    <p>{{ $post['name'] }}</p>
+                    <p>{{ $post['title'] }}</p>
                 @endforeach
             @endforeach
         @endif
@@ -46,7 +46,7 @@
             {{ csrf_field() }}
             <select name="postId">
                 @foreach($availablePosts as $newPost)
-                    <option value="{{$newPost['id']}}">{{$newPost['name']}}</option>
+                    <option value="{{$newPost['id']}}">{{$newPost['title']}}</option>
                 @endforeach
             </select>
             <button type="submit">Hozzáad</button>
