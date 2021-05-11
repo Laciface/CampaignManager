@@ -14,9 +14,14 @@
     <div>
         @if($products)
             @foreach($products as $productList)
-                {{--<img src="{{ Storage::url('images/' . $product['image'])}}" alt="" width="100" height="100">--}}
                 @foreach($productList as $product)
+                    <img src="{{ Storage::url('images/' . $product['picture'])}}" alt="" width="100" height="100">
                     <p>{{ $product['name'] }}</p>
+                    @if($product['sale'] !== 0)
+                        <p>{{ $product['sale'] }} Ft</p>
+                    @else
+                        <p>{{ $product['price'] }} Ft</p>
+                    @endif
                 @endforeach
             @endforeach
         @endif
@@ -58,10 +63,11 @@
         @if($coupons)
             @foreach($coupons as $couponList)
                 @foreach($couponList as $coupon)
-                    <form action="" method="post">
+                    <form action="/activateCoupon/{{$campaign->id}}" method="post">
                         {{csrf_field()}}
                         <p>{{ $coupon['name'] }}</p>
                         <p>{{$coupon->percentage}} %</p>
+                        <input type="hidden" name="coupon" value="{{$coupon->discount}}">
                         <button type="submit">Aktiválás</button>
                     </form>
                 @endforeach
@@ -77,37 +83,32 @@
             </select>
             <button type="submit">Hozzáad</button>
         </form>
-        {{--@if($coupons)
-            @foreach($coupons as $coupon)
-                <p>{{$coupon->name}}</p>
-                <p>{{$coupon->percentage}} %</p>
-                <button type="submit">Aktiválás</button>
-            @endforeach
-        @endif--}}
     </div>
 
     <span>kampány státusza</span>
-    @if($campaign->status)
+    @if($campaign->approved)
         <p>jóváhagyott</p>
     @else
         <p>jóváhagyásra vár</p>
     @endif
-
-    <form action="">
-        <div>
+    <div>
+        <form action="/changeStatus/{{$campaign->id}}" method="post">
+            {{csrf_field()}}
             <select name="status">
-                <option value="approved">elfogadott</option>
-                <option value="not accepted">nem elfogadott</option>
+                <option value="1">elfogadott</option>
+                <option value="0">nem elfogadott</option>
             </select>
             <button type="submit">módosít</button>
-        </div>
-    </form>
+        </form>
+    </div>
 
-    <form action="">
+    <form action="/activate/{{$campaign->id}}" method="post">
+        {{csrf_field()}}
         <button type="submit">Start</button>
     </form>
 
-    <form action="">
+    <form action="/stop/{{$campaign->id}}" method="post">
+        {{csrf_field()}}
         <button type="submit">Stop</button>
     </form>
 @endsection

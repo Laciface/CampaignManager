@@ -9,6 +9,8 @@
             <input type="file" name="picture">
             <label for="name">Termék neve</label>
             <input type="text" name="name" required>
+            <label for="price">Termék ára</label>
+            <input type="number" name="price" required>
             <label for="description">Termék leírás</label>
             <textarea name="description" required></textarea>
             <button type="submit">Létrehoz</button>

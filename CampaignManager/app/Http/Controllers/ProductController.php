@@ -17,6 +17,7 @@ class ProductController extends Controller
     public function createProduct(Request $request){
         $name = $request->input('name');
         $description = $request->input('description');
+        $price = $request->input('price');
 
         $image = $request->file('picture');
         $fileName = str_replace(' ', '', $request->input('name')) . '.' . $image->getClientOriginalExtension();
@@ -28,7 +29,7 @@ class ProductController extends Controller
         $img->stream();
         Storage::disk('local')->put('public/images/'. $fileName, $img);
 
-        $arrayToInsert = array('name'=>$name, 'description' => $description, 'picture' => $fileName);
+        $arrayToInsert = array('price'=> $price, 'name'=>$name, 'description' => $description, 'picture' => $fileName);
         DB::table('products')->insert($arrayToInsert);
 
         return redirect()->route('displayCampaigns');

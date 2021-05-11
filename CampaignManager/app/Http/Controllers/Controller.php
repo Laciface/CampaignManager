@@ -46,4 +46,17 @@ class Controller extends BaseController
         }
         return $elements;
     }
+    public function checkProductsOfRunningCampaigns($productIds){
+        $productIds = is_null($productIds)?array():$productIds;
+        $ids = array();
+        foreach (Campaign::where('is_running', 1)->get() as $campaign) {
+            $ids = array_merge($campaign->products, $ids);
+        }
+        foreach ($productIds as $id){
+            if(in_array($id, $ids)){
+                return false;
+            }
+        }
+        return true;
+    }
 }

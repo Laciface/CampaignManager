@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BlogPost;
 use App\Models\Campaign;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,18 +24,29 @@ class BlogPostController extends Controller
     }
 
     public function addPostToCampaign(Request $request, $id){
-        $postId = $request->input('postId');
-        $postIdList = Campaign::where('id', $id)->value('posts');
-        $msg = "ez a bejegyzés már hozzá lett adva a kampányhoz";
-        $this->checkTheExistence($postId, $postIdList, $msg, $id);
-        if($postIdList == null){
-            DB::table('campaigns')->where('id', $id)->update(['posts'=> array($postId)]);
-        } else {
-            array_push($postIdList, $postId);
-            DB::table('campaigns')->where('id', $id)->update(['posts'=> $postIdList]);
-        }
+        $today = strtotime('today');
+        if(!$this->isWeekend($today)) {
+            $postId = $request->input('postId');
+            $postIdList = Campaign::where('id', $id)->value('posts');
+            $msg = "ez a bejegyzés már hozzá lett adva a kampányhoz";
+            $this->checkTheExistence($postId, $postIdList, $msg, $id);
+            if ($postIdList == null) {
+                DB::table('campaigns')->where('id', $id)->update(['posts' => array($postId)]);
+            } else {
+                array_push($postIdList, $postId);
+                DB::table('campaigns')->where('id', $id)->update(['posts' => $postIdList]);
+            }
 
-        header("Location: http://localhost:8000/campaignHandler/$id", true);
-        die();
+            header("Location: http://localhost:8000/campaignHandler/$id", true);
+            die();
+        } else {
+            $msg = 'Nem publikálhatsz bejegyzést hétvégén!';
+            header("Location: http://localhost:8000/campaignHandler/$id?msg=$msg");
+            die();
+        }
+    }
+
+    public function isWeekend($date) {
+        return (date('N', strtotime($date)) >= 6);
     }
 }
