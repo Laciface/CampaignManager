@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Campaign;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -49,5 +50,10 @@ class ProductController extends Controller
 
         header("Location: http://localhost:8000/campaignHandler/$id", true);
         die();
+    }
+
+    public function openProduct($productId){
+        $product = Product::where('id', $productId)->get();
+        return view('read.readProduct', compact('product'));
     }
 }

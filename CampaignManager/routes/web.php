@@ -30,7 +30,7 @@ Route::post('/changeStatus/{id}', [CampaignController::class, 'changeStatus']);
 Route::get('/productForm', [ProductController::class, 'displayProductForm'])->name('productForm');
 Route::post('/createProduct', [ProductController::class, 'createProduct']);
 Route::post('/addProduct/{id}', [ProductController::class, 'addProductToCampaign']);
-
+Route::get('/readProduct/{productId}', [ProductController::class, 'openProduct']);
 
 //Coupon
 Route::get('/couponForm', [CouponController::class, 'displayCouponForm'])->name('couponForm');

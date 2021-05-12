@@ -19,9 +19,9 @@
                 @if($products)
                     @foreach($products as $productList)
                         @foreach($productList as $product)
-                            <div>
-                                <img src="{{ Storage::url('images/' . $product['picture'])}}" alt="" width="100" height="100">
-                                <p>{{ $product['name'] }}</p>
+                            <div class="column">
+                                <img class="image" src="{{ Storage::url('images/' . $product['picture'])}}" alt="" width="100" height="100">
+                                <a href="/readProduct/{{$product->id}}">{{ $product['name'] }}</a>
                                 @if($product['sale'] !== 0)
                                     <p>{{ $product['sale'] }} Ft</p>
                                 @else
