@@ -28,7 +28,7 @@ class CouponController extends Controller
     public function addCouponToCampaign(Request $request, $id){
         $couponId = $request->input('couponId');
         $couponIdList = Campaign::where('id', $id)->value('coupons');
-        $msg = "ez a kupon már hozzá lett adva a kampányhoz";
+        $msg = "Ez a kupon már hozzá lett adva a kampányhoz!";
         $this->checkTheExistence($couponId, $couponIdList, $msg, $id);
         if($couponIdList == null){
             DB::table('campaigns')->where('id', $id)->update(['coupons'=> array($couponId)]);

@@ -38,7 +38,7 @@ class ProductController extends Controller
     public function addProductToCampaign(Request $request, $id){
         $productId = $request->input('productId');
         $productIdList = Campaign::where('id', $id)->value('products');
-        $msg = "ez a termék már hozzá lett adva a kampányhoz";
+        $msg = "Ez a termék már hozzá lett adva a kampányhoz!";
         $this->checkTheExistence($productId, $productIdList, $msg, $id);
         if($productIdList == null){
             DB::table('campaigns')->where('id', $id)->update(['products'=> array($productId)]);

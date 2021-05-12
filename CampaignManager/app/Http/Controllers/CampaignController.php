@@ -30,11 +30,11 @@ class CampaignController extends Controller
         $first_day = $request->input('first_day');
         $last_day = $request->input('last_day');
         if( strtotime($first_day) > strtotime($last_day)) {
-            $msg = "Az utolsó nap előbb van mint a kezdő dátum";
+            $msg = "Az utolsó nap előbb van mint a kezdő dátum!";
             header("Location: http://localhost:8000/campaignForm?msg=$msg");
             die();
         } elseif (strtotime($first_day) < strtotime('now')){
-            $msg = "A kezdő dátum a mai napnál nem lehet korábbi";
+            $msg = "A kezdő dátum a mai napnál nem lehet korábbi!";
             header("Location: http://localhost:8000/campaignForm?msg=$msg", true);
             die();
         }
@@ -75,7 +75,7 @@ class CampaignController extends Controller
                 DB::table('campaigns')->where('id', $id)->update(['is_running' => true]);
                 return redirect()->route('displayCampaigns');
             } else {
-                $msg = 'Már fut egy kampány ezzel a termékkel';
+                $msg = 'Már fut egy kampány ezzel a termékkel!';
                 header("Location: http://localhost:8000/campaignHandler/$id?msg=$msg");
                 die();
             }
