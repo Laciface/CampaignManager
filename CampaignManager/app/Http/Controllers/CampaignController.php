@@ -73,7 +73,7 @@ class CampaignController extends Controller
             $unique = $this->checkProductsOfRunningCampaigns($productIds);
             if($unique){
                 DB::table('campaigns')->where('id', $id)->update(['is_running' => true]);
-                $this->backToHandler($id);
+                return redirect()->route('displayCampaigns');
             } else {
                 $msg = 'Már fut egy kampány ezzel a termékkel';
                 header("Location: http://localhost:8000/campaignHandler/$id?msg=$msg");
@@ -89,7 +89,7 @@ class CampaignController extends Controller
 
     public function stopCampaign($id){
         DB::table('campaigns')->where('id', $id)->update(['is_running' => false]);
-        $this->backToHandler($id);
+        return redirect()->route('displayCampaigns');
     }
 
     public function campaignHasProduct($id){
