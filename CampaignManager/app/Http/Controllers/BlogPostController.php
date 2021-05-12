@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BlogPost;
 use App\Models\Campaign;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -48,5 +50,10 @@ class BlogPostController extends Controller
 
     public function isWeekend($date) {
         return (date('N', strtotime($date)) >= 6);
+    }
+
+    public function openPost($postId){
+        $post = BlogPost::where('id', $postId)->get();
+        return view('read.readBlogPost', compact('post'));
     }
 }

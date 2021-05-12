@@ -52,7 +52,7 @@
                 @foreach($posts as $postList)
                     @foreach($postList as $post)
                         <div>
-                            <p>{{ $post['title'] }}</p>
+                            <a href="/readPost/{{$post->id}}">{{ $post['title'] }}</a>
                         </div>
                     @endforeach
                 @endforeach
