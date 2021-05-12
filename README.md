@@ -1,6 +1,5 @@
 # CampaignManager
 
-task:
 
 A feladat egy kampánymenedzser leprogramozása, amely az alábbi feltételek alapján
 képes kampányokat ki és bekapcsolni:
