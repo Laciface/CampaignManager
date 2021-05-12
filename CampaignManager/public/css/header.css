@@ -1,0 +1,19 @@
+.header {
+    background-color: cornflowerblue;
+
+}
+
+a {
+    color: brown;
+    text-decoration: none;
+}
+
+.body {
+    margin: 0px;
+    background-color: azure;
+}
+
+.links a {
+    margin-right: 5px;
+    padding-right: 15px;
+}

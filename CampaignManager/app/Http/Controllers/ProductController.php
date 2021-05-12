@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Campaign;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -38,7 +39,7 @@ class ProductController extends Controller
     public function addProductToCampaign(Request $request, $id){
         $productId = $request->input('productId');
         $productIdList = Campaign::where('id', $id)->value('products');
-        $msg = "ez a termék már hozzá lett adva a kampányhoz";
+        $msg = "Ez a termék már hozzá lett adva a kampányhoz!";
         $this->checkTheExistence($productId, $productIdList, $msg, $id);
         if($productIdList == null){
             DB::table('campaigns')->where('id', $id)->update(['products'=> array($productId)]);
@@ -49,5 +50,10 @@ class ProductController extends Controller
 
         header("Location: http://localhost:8000/campaignHandler/$id", true);
         die();
+    }
+
+    public function openProduct($productId){
+        $product = Product::where('id', $productId)->get();
+        return view('read.readProduct', compact('product'));
     }
 }

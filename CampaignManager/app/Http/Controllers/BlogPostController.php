@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BlogPost;
 use App\Models\Campaign;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -28,7 +30,7 @@ class BlogPostController extends Controller
         if(!$this->isWeekend($today)) {
             $postId = $request->input('postId');
             $postIdList = Campaign::where('id', $id)->value('posts');
-            $msg = "ez a bejegyzés már hozzá lett adva a kampányhoz";
+            $msg = "Ez a bejegyzés már hozzá lett adva a kampányhoz!";
             $this->checkTheExistence($postId, $postIdList, $msg, $id);
             if ($postIdList == null) {
                 DB::table('campaigns')->where('id', $id)->update(['posts' => array($postId)]);
@@ -45,8 +47,17 @@ class BlogPostController extends Controller
             die();
         }
     }
-
     public function isWeekend($date) {
-        return (date('N', strtotime($date)) >= 6);
+        $weekendDay = false;
+        $day = date("D", $date);
+        if($day == 'Sat' || $day == 'Sun'){
+            $weekendDay = true;
+        }
+        return $weekendDay;
+    }
+
+    public function openPost($postId){
+        $post = BlogPost::where('id', $postId)->get();
+        return view('read.readBlogPost', compact('post'));
     }
 }

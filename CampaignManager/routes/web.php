@@ -30,7 +30,7 @@ Route::post('/changeStatus/{id}', [CampaignController::class, 'changeStatus']);
 Route::get('/productForm', [ProductController::class, 'displayProductForm'])->name('productForm');
 Route::post('/createProduct', [ProductController::class, 'createProduct']);
 Route::post('/addProduct/{id}', [ProductController::class, 'addProductToCampaign']);
-
+Route::get('/readProduct/{productId}', [ProductController::class, 'openProduct']);
 
 //Coupon
 Route::get('/couponForm', [CouponController::class, 'displayCouponForm'])->name('couponForm');
@@ -41,8 +41,8 @@ Route::post('/activateCoupon/{id}', [CouponController::class, 'activateCoupon'])
 //Blog post
 Route::get('/blogPostForm', [BlogPostController::class, 'displayBlogPostForm'])->name('blogPostForm');
 Route::post('/createBlogPost', [BlogPostController::class, 'createPost']);
-Route::post('/addPost/{id}', [blogpostController::class, 'addPostToCampaign']);
-
+Route::post('/addPost/{id}', [blogPostController::class, 'addPostToCampaign']);
+Route::get('/readPost/{postId}', [blogPostController::class, 'openPost']);
 
 //start and stop campaign
 Route::post('/activate/{id}', [CampaignController::class, 'startCampaign']);

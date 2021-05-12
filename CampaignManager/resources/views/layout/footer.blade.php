@@ -1,5 +1,5 @@
 <footer>
-    <h3>Footer</h3>
+    <h3>©Csomáli László Rómeó</h3>
 </footer>
 
 </body>
