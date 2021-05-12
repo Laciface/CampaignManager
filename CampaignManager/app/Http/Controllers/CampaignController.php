@@ -66,6 +66,7 @@ class CampaignController extends Controller
     }
 
     public function startCampaign($id){
+        $this->campaignHasProduct($id);
         $productIds = Campaign::where('id', $id)->value('products');
         $activable = Campaign::where('id', $id)->value('approved');
         if($activable){
@@ -91,5 +92,12 @@ class CampaignController extends Controller
         $this->backToHandler($id);
     }
 
+    public function campaignHasProduct($id){
+        if(Campaign::where('id', $id)->value('products') == null){
+            $msg = 'Kampány nem indítható termék nélkül!';
+            header("Location: http://localhost:8000/campaignHandler/$id?msg=$msg");
+            die();
+        }
+    }
 
 }
