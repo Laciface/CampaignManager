@@ -2,8 +2,8 @@
 
 @section('center')
 
-    <div>
-        <form action="/createProduct" method="post" enctype="multipart/form-data">
+    <div id="productContainer">
+        <form action="/createProduct" method="post" enctype="multipart/form-data" id="productForm">
             {{ csrf_field() }}
             <label for="picture">Csatolj képet a termékhez</label>
             <input type="file" name="picture">
@@ -13,7 +13,7 @@
             <input type="number" name="price" required>
             <label for="description">Termék leírás</label>
             <textarea name="description" required></textarea>
-            <button type="submit">Létrehoz</button>
+            <button id="productButton" type="submit">Létrehoz</button>
         </form>
     </div>
 @endsection

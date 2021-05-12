@@ -27,3 +27,32 @@
 .campingCard:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
+
+#productForm {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+input {
+    max-width: 300px;
+    margin-top: 15px;
+}
+
+textarea {
+    max-width: 300px;
+    height: 300px;
+    margin-top: 15px;
+}
+
+#productButton {
+    max-width: 150px;
+    margin-top: 15px;
+}
+
+#productContainer {
+    margin-left: 750px;
+    margin-top: 30px;
+}

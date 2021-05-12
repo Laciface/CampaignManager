@@ -99,5 +99,4 @@ class CampaignController extends Controller
             die();
         }
     }
-
 }
