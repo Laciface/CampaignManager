@@ -2,13 +2,14 @@
 
 @section('center')
 
-    <div>
-        <form action="/createCoupon" method="post" enctype="multipart/form-data">
+    <div class="productContainer">
+        <div class="title">Kupon</div>
+        <form action="/createCoupon" method="post" enctype="multipart/form-data" class="productForm">
             {{ csrf_field() }}
             <label for="name">Kupon neve</label>
-            <input type="text" name="name" required>
+            <input type="text" name="name" placeholder="név" required>
             <label for="discount">Kedvezmény mértéke</label>
-            <select name="discount" required>
+            <select name="discount" required class="select">
                 <option value="0.05">5%</option>
                 <option value="0.1">10%</option>
                 <option value="0.15">15%</option>
@@ -16,7 +17,7 @@
                 <option value="0.25">25%</option>
                 <option value="0.3">30%</option>
             </select>
-            <button type="submit">Létrehoz</button>
+            <button class="productButton" type="submit">Létrehoz</button>
         </form>
     </div>
 @endsection

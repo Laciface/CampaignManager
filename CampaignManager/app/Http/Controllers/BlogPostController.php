@@ -28,7 +28,7 @@ class BlogPostController extends Controller
         if(!$this->isWeekend($today)) {
             $postId = $request->input('postId');
             $postIdList = Campaign::where('id', $id)->value('posts');
-            $msg = "ez a bejegyzés már hozzá lett adva a kampányhoz";
+            $msg = "Ez a bejegyzés már hozzá lett adva a kampányhoz!";
             $this->checkTheExistence($postId, $postIdList, $msg, $id);
             if ($postIdList == null) {
                 DB::table('campaigns')->where('id', $id)->update(['posts' => array($postId)]);
