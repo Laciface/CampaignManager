@@ -47,9 +47,13 @@ class BlogPostController extends Controller
             die();
         }
     }
-
     public function isWeekend($date) {
-        return (date('N', strtotime($date)) >= 6);
+        $weekendDay = false;
+        $day = date("D", $date);
+        if($day == 'Sat' || $day == 'Sun'){
+            $weekendDay = true;
+        }
+        return $weekendDay;
     }
 
     public function openPost($postId){
