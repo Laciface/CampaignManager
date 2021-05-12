@@ -1,0 +1,9 @@
+footer {
+    text-align: center;
+    color: brown;
+    position: absolute;
+    width: 100%;
+    height: 70px;
+    bottom: 0;
+    background: cornflowerblue;
+}
